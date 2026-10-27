@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#111322">
+<title>STAR DODGE · 별 사이로</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#111322;color:#f6f5ff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}button{font:inherit;cursor:pointer}button:focus-visible,canvas:focus-visible{outline:3px solid #e9ff96;outline-offset:4px}main{max-width:1050px;margin:auto;padding:32px 28px}header{display:flex;justify-content:space-between;align-items:center;padding-bottom:24px;border-bottom:1px solid #ffffff15}.brand{font-size:13px;font-weight:800;letter-spacing:3px}.brand span{color:#dcf99a}.tag{color:#b0b1c8;font-size:12px}.layout{display:grid;grid-template-columns:1fr 480px;gap:64px;align-items:center;padding-top:34px}.eyebrow{color:#c0acf8;font-size:12px;letter-spacing:3px;font-weight:700}h1{font-size:62px;letter-spacing:-4px;line-height:1.05;margin:20px 0}h1 span{color:#dcf99a}.intro{font-size:16px;color:#abaec8;line-height:1.9;margin:24px 0 32px}.instructions{display:grid;gap:18px;font-size:14px;color:#c7c8db}.instructions div{display:flex;align-items:center;gap:13px}.icon{width:36px;height:36px;display:grid;place-items:center;border:1px solid #ffffff22;border-radius:10px;color:#dcf99a;font-size:20px}.note{font-size:12px;color:#888ca8;line-height:1.8;margin-top:36px}.game{border:1px solid #ffffff20;border-radius:20px;overflow:hidden;background:#171a2d;box-shadow:0 24px 80px #0004}.scores{display:flex;justify-content:space-between;align-items:center;padding:17px 20px;border-bottom:1px solid #ffffff10}.score-label{color:#989db9;font-size:10px;letter-spacing:2px}.score-number{font-size:24px;font-variant-numeric:tabular-nums;font-weight:750}.best{text-align:right}.best .score-number{color:#dcf99a}.board{position:relative;aspect-ratio:480/550;background:#11172b}canvas{display:block;width:100%;height:100%;touch-action:none}.overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:linear-gradient(#10172b44,#10172be8);padding:24px}.overlay[hidden]{display:none}.orb{font-size:48px;color:#dcf99a;margin-bottom:8px}.overlay h2{font-size:28px;letter-spacing:-1px;margin:12px 0}.overlay p{font-size:14px;color:#c2c6dc;line-height:1.8;white-space:pre-line;margin:0 0 25px}.primary{border:0;background:#dcf99a;color:#1c2924;padding:15px 32px;border-radius:12px;font-weight:800;box-shadow:0 4px 22px #dcf99a18}.primary:hover{background:#ebffc0}.game-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 18px;font-size:11px;color:#a8acc6}.pause{background:#ffffff08;border:1px solid #ffffff20;border-radius:7px;color:#e4e4f5;padding:6px 10px;font-size:12px}.pause:disabled{opacity:.35;cursor:default}.status{display:flex;align-items:center;gap:7px}.dot{height:6px;width:6px;border-radius:50%;background:#dcf99a}footer{padding-top:28px;color:#646b89;font-size:10px;letter-spacing:2px}@media(max-width:850px){.layout{grid-template-columns:1fr;gap:24px;max-width:480px;margin:auto;padding-top:25px}.copy h1{font-size:38px;letter-spacing:-2px;margin:12px 0}.intro{margin:10px 0;font-size:14px}.instructions,.note{display:none}.eyebrow{font-size:10px}main{padding:20px 16px}.tag{font-size:10px}.game{width:100%}footer{text-align:center}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<main>
+<header><div class="brand"><span>✦</span> ORBIT ARCADE</div><div class="tag">작은 게임, 짧은 우주 여행</div></header>
+<section class="layout">
+<div class="copy"><div class="eyebrow">01 / SURVIVAL GAME</div><h1>별 사이로,<br><span>조금 더 멀리.</span></h1><p class="intro">쏟아지는 운석을 피하고 별을 모으세요.<br>얼마나 오래 살아남을 수 있을까요?</p><div class="instructions"><div><span class="icon">↔</span>방향키 또는 A / D로 이동</div><div><span class="icon">✦</span>별을 모으면 +100점</div><div><span class="icon">◈</span>운석에 닿으면 게임 종료</div></div><p class="note">모바일에서는 화면을 누른 채 좌우로 움직이세요.<br>최고 기록은 현재 브라우저에 저장됩니다.</p></div>
+<div class="game">
+<div class="scores"><div><div class="score-label">SCORE</div><div class="score-number" id="score">0000</div></div><div class="best"><div class="score-label">PERSONAL BEST</div><div class="score-number" id="best">0000</div></div></div>
+<div class="board"><canvas id="canvas" width="480" height="550" tabindex="0" aria-label="운석 피하기 게임. 방향키 또는 A와 D로 이동하고 P로 일시정지합니다."></canvas><div class="overlay" id="overlay"><div class="orb">✦</div><h2 id="title">우주로 출발할까요?</h2><p id="message">운석을 피하고 반짝이는 별을 모으세요.
+방향키 · A / D · 터치로 이동</p><button class="primary" id="start">게임 시작 →</button></div></div>
+<div class="game-footer"><span class="status"><i class="dot"></i><span id="status">READY TO LAUNCH</span></span><button class="pause" id="pause" disabled>일시정지 · P</button></div>
+</div>
+</section>
+<footer>STAR DODGE / MADE FOR A LITTLE BREAK</footer>
+</main>
+<script>
+'use strict';
+const canvas=document.getElementById('canvas'),ctx=canvas.getContext('2d');
+const ui=Object.fromEntries(['score','best','overlay','title','message','start','status','pause'].map(id=>[id,document.getElementById(id)]));
+const W=480,H=550,keys=new Set();
+let state='ready',score=0,best=0,elapsed=0,spawn=0,starTimer=0,last=0,objects=[],particles=[],pointer=null;
+const player={x:W/2,y:H-65,r:12};
+const stars=Array.from({length:65},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.3,s:Math.random()*22+10}));
+try{best=Math.max(0,Number(localStorage.getItem('star-dodge-best'))||0)}catch{}
+const format=n=>String(Math.floor(n)).padStart(4,'0');
+ui.best.textContent=format(best);
+function updateScore(){ui.score.textContent=format(score)}
+function show(title,message,button){ui.title.textContent=title;ui.message.textContent=message;ui.start.textContent=button;ui.overlay.hidden=false}
+function start(){state='playing';score=0;elapsed=0;spawn=.5;starTimer=1.5;objects=[];particles=[];keys.clear();pointer=null;player.x=W/2;ui.overlay.hidden=true;ui.pause.disabled=false;ui.pause.textContent='일시정지 · P';ui.status.textContent='GOOD LUCK, PILOT';updateScore();canvas.focus()}
+function pause(){if(state!=='playing')return;state='paused';keys.clear();pointer=null;ui.status.textContent='PAUSED';ui.pause.textContent='계속하기 · P';show('잠깐 쉬어가요', '준비되면 다시 출발하세요.', '계속하기 →')}
+function resume(){state='playing';ui.overlay.hidden=true;ui.pause.textContent='일시정지 · P';ui.status.textContent='GOOD LUCK, PILOT';canvas.focus()}
+function end(){state='over';keys.clear();pointer=null;ui.pause.disabled=true;const record=score>best;if(record){best=Math.floor(score);try{localStorage.setItem('star-dodge-best',String(best))}catch{}ui.best.textContent=format(best)}ui.status.textContent='MISSION COMPLETE';show(record?'새로운 최고 기록!':'좋은 비행이었어요!',Math.floor(elapsed)+'초 생존 · '+Math.floor(score)+'점\n다시 도전해서 더 멀리 가보세요.', '다시 도전 →');ui.start.focus()}
+ui.start.addEventListener('click',()=>state==='paused'?resume():start());
+ui.pause.addEventListener('click',()=>state==='paused'?resume():pause());
+window.addEventListener('keydown',e=>{if(e.target instanceof HTMLInputElement)return;const k=e.key.toLowerCase();if(['arrowleft','arrowright','a','d','p'].includes(k)){if(state==='playing'||state==='paused')e.preventDefault();if(k==='p'&&!e.repeat){if(state==='playing')pause();else if(state==='paused')resume()}else if(state==='playing')keys.add(k)}});
+window.addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));
+window.addEventListener('blur',pause);document.addEventListener('visibilitychange',()=>{if(document.hidden)pause()});
+function movePointer(e){const box=canvas.getBoundingClientRect();pointer=Math.max(18,Math.min(W-18,(e.clientX-box.left)*W/box.width))}
+canvas.addEventListener('pointerdown',e=>{if(state==='playing'){canvas.setPointerCapture(e.pointerId);movePointer(e)}});
+canvas.addEventListener('pointermove',e=>{if(state==='playing'&&canvas.hasPointerCapture(e.pointerId))movePointer(e)});
+function clearPointer(){pointer=null}canvas.addEventListener('pointerup',clearPointer);canvas.addEventListener('pointercancel',clearPointer);canvas.addEventListener('lostpointercapture',clearPointer);
+function burst(x,y){for(let i=0;i<12;i++){const a=Math.random()*Math.PI*2;particles.push({x,y,vx:Math.cos(a)*90,vy:Math.sin(a)*90,life:.55})}}
+function update(dt){elapsed+=dt;score+=dt*10;const dir=(keys.has('arrowright')||keys.has('d')?1:0)-(keys.has('arrowleft')||keys.has('a')?1:0);player.x+=dir*330*dt;if(pointer!==null){const delta=pointer-player.x;player.x+=Math.sign(delta)*Math.min(Math.abs(delta),420*dt)}player.x=Math.max(18,Math.min(W-18,player.x));spawn-=dt;starTimer-=dt;if(spawn<=0){const r=14+Math.random()*13;objects.push({type:'rock',x:r+Math.random()*(W-2*r),y:-35,r,speed:135+Math.random()*65+Math.min(180,elapsed*3),angle:Math.random()*6});spawn=Math.max(.24,.8-elapsed*.009)}if(starTimer<=0){objects.push({type:'star',x:24+Math.random()*(W-48),y:-20,r:11,speed:160,angle:0});starTimer=1.5+Math.random()}for(const o of objects){o.y+=o.speed*dt;o.angle+=dt;if(Math.hypot(o.x-player.x,o.y-player.y)<o.r+player.r-3){if(o.type==='rock'){updateScore();end();return}score+=100;burst(o.x,o.y);o.y=H+100}}objects=objects.filter(o=>o.y<H+45);for(const p of particles){p.x+=p.vx*dt;p.y+=p.vy*dt;p.life-=dt}particles=particles.filter(p=>p.life>0);updateScore()}
+function draw(dt){ctx.clearRect(0,0,W,H);const g=ctx.createRadialGradient(W*.7,H*.2,0,W*.7,H*.2,W);g.addColorStop(0,'#242342');g.addColorStop(1,'#10182b');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);for(const s of stars){if(state==='playing')s.y=(s.y+s.s*dt)%H;ctx.fillStyle='#a9b5df';ctx.globalAlpha=.3+s.r/3;ctx.fillRect(s.x,s.y,s.r,s.r)}ctx.globalAlpha=1;ctx.strokeStyle='#ffffff04';for(let x=0;x<W;x+=60){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke()}for(const o of objects){ctx.save();ctx.translate(o.x,o.y);ctx.rotate(o.angle);if(o.type==='rock'){ctx.fillStyle='#b97f77';ctx.strokeStyle='#ecb39c';ctx.lineWidth=2;ctx.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,r=o.r*(i%2?.84:1);const x=Math.cos(a)*r,y=Math.sin(a)*r;if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)}ctx.closePath();ctx.fill();ctx.stroke();ctx.fillStyle='#875a60';ctx.beginPath();ctx.arc(-4,-3,o.r*.27,0,Math.PI*2);ctx.fill()}else{ctx.fillStyle='#e5ff9d';ctx.shadowColor='#d7ff80';ctx.shadowBlur=18;ctx.beginPath();for(let i=0;i<8;i++){const a=i*Math.PI/4,r=i%2?4:13;if(i===0)ctx.moveTo(Math.cos(a)*r,Math.sin(a)*r);else ctx.lineTo(Math.cos(a)*r,Math.sin(a)*r)}ctx.closePath();ctx.fill()}ctx.restore()}for(const p of particles){ctx.globalAlpha=p.life/.55;ctx.fillStyle='#e5ff9d';ctx.fillRect(p.x,p.y,3,3)}ctx.globalAlpha=1;ctx.save();ctx.translate(player.x,player.y);if(state==='playing'){ctx.fillStyle='#c3a8ff';ctx.shadowColor='#a677ff';ctx.shadowBlur=15;ctx.beginPath();ctx.moveTo(-6,11);ctx.lineTo(0,25+Math.random()*12);ctx.lineTo(6,11);ctx.fill()}ctx.shadowBlur=12;ctx.shadowColor='#b2adff';ctx.fillStyle='#d8d7ff';ctx.beginPath();ctx.moveTo(0,-20);ctx.lineTo(17,15);ctx.lineTo(0,8);ctx.lineTo(-17,15);ctx.closePath();ctx.fill();ctx.fillStyle='#7d72cb';ctx.beginPath();ctx.moveTo(0,-8);ctx.lineTo(5,5);ctx.lineTo(-5,5);ctx.fill();ctx.restore()}
+function frame(time){const dt=Math.min((time-last)/1000||0,.035);last=time;if(state==='playing')update(dt);draw(dt);requestAnimationFrame(frame)}requestAnimationFrame(frame);
+</script>
+</body>
+</html>
